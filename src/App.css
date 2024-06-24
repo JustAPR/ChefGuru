@@ -1,0 +1,234 @@
+/* General styles */
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #312f2f;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.app {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.back-arrow:hover {
+  background-color: bisque;
+}
+
+/* Search container styles */
+.search-container {
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+input[type="text"] {
+  padding: 10px;
+  border: 2px solid #3e78b7;
+  border-radius: 20px;
+  width: 90%; /* Responsive width */
+  max-width: 300px; /* Maximum width */
+  font-size: 16px;
+  outline: none;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+  outline: none;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Suggestions styles */
+.suggestions-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.suggestions {
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  max-height: 150px;
+  overflow-y: auto;
+  width: calc(100% - 22px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+}
+
+.suggestions li {
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.suggestions li:hover {
+  background-color: #f0f0f0;
+}
+
+/* Results and card styles */
+.results-container {
+  margin: 20px;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.card {
+  background-color: #e1d5d502;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 15px;
+  width: 100%; /* Full width on mobile */
+  max-width: 200px; /* Maximum width for larger screens */
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.5s ease, color 0.5s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
+  text-decoration: none;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #00b7c427;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  margin: 0.5rem;
+  font-size: 1vw; /* Fixed font size for consistency */
+  color: #f3f3f3;
+}
+
+/* Recipe details styles */
+.recipe-details {
+  padding: 20px;
+  text-align: left;
+  max-width: 600px;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-details h2 {
+  color: #007bff;
+}
+
+.recipe-details img {
+  width: 100%;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.recipe-details h3 {
+  margin-top: 20px;
+}
+
+.recipe-details ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.recipe-details ul li {
+  margin-bottom: 5px;
+}
+
+.recipe-details p {
+  white-space: pre-line; /* Preserve line breaks in instructions */
+}
+
+.header-text {
+  font-size: 28px;
+  font-weight: 600;
+  color: #ffffffd9;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.display-text {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #ffffff;
+  text-align: justify;
+  margin-bottom: 15px;
+}
+
+.card-d {
+  width: 100%;
+  background-color: #007bff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f0f0f0;
+}
+
+.single-card-header {
+  background-color: #ffffff;
+  font-size: 2rem;
+}
+
+.instructions-content,
+.ingredient-content {
+  font-size: 1.5rem;
+}
+
+.back-arrow {
+  border-radius: 10px;
+  padding: 10px;
+  text-decoration: none; /* Remove underline globally for back arrow */
+  font-size: 2rem;
+  font-family: Calibri, "Trebuchet MS", sans-serif;
+  font-weight: bold;
+  color: #e9533cd9;
+}
+
+/* Media query for mobile responsiveness */
+@media (max-width: 768px) {
+  .app,
+  .search-container,
+  .results-container,
+  .recipe-details {
+    padding: 10px;
+    margin: 10px;
+  }
+
+  .search-container input[type="text"],
+  .cards-container .card {
+    width: 100%; /* Make input and cards full width on smaller screens */
+  }
+
+  .card h3 {
+    font-size: 5vw; /* Make font size responsive */
+  }
+}
