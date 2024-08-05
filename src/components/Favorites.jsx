@@ -7,6 +7,7 @@ const Favorites = () => {
   const { userId } = useContext(RecipeContext);
   const [favorites, setFavorites] = useState([]);
   const [uploads, setUploads] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -15,6 +16,7 @@ const Favorites = () => {
         setFavorites(response.data);
       } catch (error) {
         console.error("Error fetching favorites:", error);
+        setError("Failed to fetch favorites.");
       }
     };
 
@@ -24,6 +26,7 @@ const Favorites = () => {
         setUploads(response.data);
       } catch (error) {
         console.error("Error fetching uploads:", error);
+        setError("Failed to fetch uploads.");
       }
     };
 
@@ -48,6 +51,10 @@ const Favorites = () => {
       console.error("Error removing upload:", error);
     }
   };
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div className="favorites">

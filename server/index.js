@@ -4,6 +4,7 @@ const cors = require("cors");
 const EmployeeModel = require("./models/Employee");
 const FavoriteModel = require("./models/Favorite");
 const RecipeModel = require("./models/Recipe");
+const UserUploadedRecipeModel = require("./models/UserUploadedRecipe");
 
 const app = express();
 app.use(express.json());
@@ -64,11 +65,11 @@ app.post("/add-to-favorites", async (req, res) => {
   try {
     let existingRecipe = await RecipeModel.findOne({ title: recipe.title });
     if (!existingRecipe) {
-      existingRecipe = await RecipeModel.create(recipe);
+      existingRecipe = await RecipeModel.create({ ...recipe, userId: new mongoose.Types.ObjectId(userId) });
     }
 
     const favorite = await FavoriteModel.create({
-      userId: userId,
+      userId: new mongoose.Types.ObjectId(userId),
       recipeId: existingRecipe._id,
     });
 
@@ -78,11 +79,12 @@ app.post("/add-to-favorites", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
 app.post("/upload-recipe", async (req, res) => {
   const { userId, title, ingredients, directions } = req.body;
 
   try {
-    const recipe = await RecipeModel.create({ userId, title, ingredients, directions });
+    const recipe = await UserUploadedRecipeModel.create({ userId: new mongoose.Types.ObjectId(userId), title, ingredients, directions });
     res.json(recipe);
   } catch (err) {
     console.error(err);
@@ -94,24 +96,26 @@ app.get("/user-recipes/:userId", async (req, res) => {
   const { userId } = req.params;
 
   try {
-    const recipes = await RecipeModel.find({ userId });
+    const recipes = await UserUploadedRecipeModel.find({ userId: new mongoose.Types.ObjectId(userId) });
     res.json(recipes);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });
   }
 });
+
 app.delete("/user-recipes/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-    await RecipeModel.findByIdAndDelete(id);
+    await UserUploadedRecipeModel.findByIdAndDelete(id);
     res.json({ message: "Recipe removed" });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });
   }
 });
+
 app.delete("/favorites/:id", async (req, res) => {
   const { id } = req.params;
 
