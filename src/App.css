@@ -12,10 +12,117 @@ body {
   max-width: 1200px;
   margin: auto;
   padding: 20px;
+  text-align: center;
 }
 
-.back-arrow:hover {
-  background-color: bisque;
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.header-text {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit color from parent */
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.auth-buttons button,
+.auth-buttons a {
+  padding: 10px 20px; /* Ensure consistent padding for buttons and links */
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  text-decoration: none; /* Remove underline from links styled as buttons */
+  display: inline-block; /* Ensure proper button sizing */
+  text-align: center; /* Center text in links styled as buttons */
+}
+
+.btn-primary {
+  background: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #0056b3;
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #5a6268;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-inner {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 400px;
+  max-width: 90%;
+}
+
+.popup-title {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+.popup-form .form-group {
+  margin-bottom: 15px;
+}
+
+.popup-form label {
+  display: block;
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.popup-form input {
+  width: calc(100% - 10px);
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.message {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
 }
 
 /* Search container styles */
@@ -211,6 +318,66 @@ button:hover {
   font-family: Calibri, "Trebuchet MS", sans-serif;
   font-weight: bold;
   color: #e9533cd9;
+}
+
+.back-arrow:hover {
+  background-color: bisque;
+}
+.upload-recipe {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: auto;
+}
+
+.upload-recipe h2 {
+  color: #007bff;
+}
+
+.upload-recipe .form-group {
+  margin-bottom: 15px;
+}
+
+.upload-recipe label {
+  display: block;
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.upload-recipe input,
+.upload-recipe textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.upload-recipe textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.upload-recipe button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.upload-recipe button:hover {
+  background-color: #0056b3;
+}
+
+.upload-recipe p {
+  color: green;
 }
 
 /* Media query for mobile responsiveness */

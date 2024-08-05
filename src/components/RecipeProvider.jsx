@@ -6,9 +6,9 @@ export const RecipeProvider = ({ children }) => {
   const [ingredient, setIngredient] = useState("");
   const [recipes, setRecipes] = useState([]);
   const [isSearched, setIsSearched] = useState(false);
-  const [clickedImg, setClickedImg] = useState(""); // Add clickedImg state
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Add authentication state
-  const [userId, setUserId] = useState(null); // Add userId state
+  const [clickedImg, setClickedImg] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userId, setUserId] = useState(null);
 
   return (
     <RecipeContext.Provider
@@ -21,9 +21,9 @@ export const RecipeProvider = ({ children }) => {
         setIsSearched,
         clickedImg,
         setClickedImg,
-        isAuthenticated, // Provide authentication state
+        isAuthenticated,
         setIsAuthenticated,
-        userId, // Provide userId state
+        userId,
         setUserId,
       }}
     >

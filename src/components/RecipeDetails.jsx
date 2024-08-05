@@ -1,55 +1,54 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
+import { useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { RecipeContext } from "./RecipeContext";
+import axios from "axios";
 
 const RecipeDetails = () => {
-  const { title } = useParams();
-  const [recipe, setRecipe] = useState(null);
+  const location = useLocation();
+  const { recipe } = location.state || {};
+  const { isAuthenticated, userId } = useContext(RecipeContext);
 
-  useEffect(() => {
-    const fetchRecipe = async () => {
-      try {
-        const response = await fetch(
-          `https://www.themealdb.com/api/json/v1/1/search.php?s=${title}`
-        );
-        const data = await response.json();
-        if (data.meals) {
-          setRecipe(data.meals[0]);
-        }
-      } catch (error) {
-        console.error("Error fetching recipe:", error);
+  const handleAddToFavorites = async () => {
+    try {
+      const response = await axios.post('http://localhost:8001/add-to-favorites', {
+        userId: userId,
+        recipe: recipe
+      });
+      if (response.status === 200) {
+        alert('Recipe added to favorites!');
       }
-    };
-
-    fetchRecipe();
-  }, [title]);
+    } catch (error) {
+      console.error('Error adding to favorites:', error);
+      alert('Failed to add recipe to favorites');
+    }
+  };
 
   if (!recipe) {
     return <div>Loading...</div>;
   }
 
+  const ingredients = recipe.ingredients.split("--").map((item) => item.trim());
+  const directions = recipe.directions.split("--").map((item) => item.trim());
+
   return (
     <div className="recipe-details">
-      <h2 className="single-card-header card-d">{recipe.strMeal}</h2>
-      <img src={recipe.strMealThumb} alt={recipe.strMeal} />
+      <h2 className="single-card-header card-d">{recipe.title}</h2>
       <h3 className="single-card-ingredients card-d">Ingredients</h3>
       <ul>
-        {Array.from({ length: 20 }, (_, i) => i + 1)
-          .map((i) => ({
-            ingredient: recipe[`strIngredient${i}`],
-            measure: recipe[`strMeasure${i}`],
-          }))
-          .filter((item) => item.ingredient && item.ingredient.trim() !== "")
-          .map((item, index) => (
-            <li key={index}>
-              <p className="ingredient-content">
-                {" "}
-                {item.ingredient}: {item.measure}
-              </p>
-            </li>
-          ))}
+        {ingredients.map((ingredient, index) => (
+          <li key={index}>
+            <p className="ingredient-content">{ingredient}</p>
+          </li>
+        ))}
       </ul>
       <h3 className="single-card-instructions card-d">Instructions</h3>
-      <p className="instructions-content">{recipe.strInstructions}</p>
+      <p className="instructions-content">{directions.join(". ")}</p>
+      {isAuthenticated && (
+        <button onClick={handleAddToFavorites} className="btn btn-primary">
+          Add to Favorites
+        </button>
+      )}
     </div>
   );
 };

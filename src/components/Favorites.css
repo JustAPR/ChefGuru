@@ -1,0 +1,42 @@
+.favorites {
+    color: white; /* Set text color to white */
+  }
+  
+  .favorites h2 {
+    text-align: center;
+  }
+  
+  .favorites ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .favorites li {
+    background-color: #333;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  
+  .favorites li h3 {
+    margin: 0;
+  }
+  
+  .favorites li p {
+    margin: 5px 0;
+  }
+  
+  .btn-danger {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .btn-danger:hover {
+    background-color: darkred;
+  }
+  
